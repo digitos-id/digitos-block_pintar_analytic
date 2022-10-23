@@ -1,0 +1,1 @@
+# digitos-block_pintar_analytic
