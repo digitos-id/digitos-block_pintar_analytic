@@ -67,11 +67,11 @@ if (isloggedin()) {
 // Membaca data yang dikirim melalui URL berupa array yang dikirim menggunakan 
 // $url + http_build_query($dataid);
 //
-$idArray = explode('&',$_SERVER["QUERY_STRING"]);
-foreach ($idArray as $index => $avPair) {
- list($ignore, $value) = explode('=',$avPair);
- $id[$index] = $value;
-}
+// $idArray = explode('&',$_SERVER["QUERY_STRING"]);
+// foreach ($idArray as $index => $avPair) {
+//  list($ignore, $value) = explode('=',$avPair);
+//  $id[$index] = $value;
+// }
 echo "<div class=\"row\"><div class=\"col-md-8 text-center\">"; 
 echo $OUTPUT->render(report_course($id,$course->shortname));
 # $gambar =  $OUTPUT->render(report_course($id,$course->shortname));
