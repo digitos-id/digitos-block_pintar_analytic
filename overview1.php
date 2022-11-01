@@ -101,8 +101,7 @@ if (isloggedin()) {
 //  $id[$index] = $value;
 // }
 $url = new moodle_url('/course/view.php',array('id'=>$courseid));
-echo '<div><h2>Course: <a href='.$url.'>'. $fullname.'</a></h2></div>';
-// echo '<div><h3>Course: <a href="https://staging.pintartanoto.id/course/view.php?id='.$id.'">'.$course->shortname.'</a></h3></div>';
+echo '<div><h2>Course: <a href="'.$url.'">'. $course->shortname.'</a></h2></div>';
 echo '<div>Keterlibatan dan Keaktifan Peserta</div>';
 echo '<div class="container">';
 echo '<div class="row">';
@@ -119,8 +118,6 @@ echo $OUTPUT->footer();
 //
 
 function report_course($id,$fullname){
-    # echo '<h2>Course ID: <a href="https://staging.pintartanoto.id/course/view.php?id='.$id.'">'. $id.'</a></h2>';
-    # echo '<h2>Course: <a href="https://staging.pintartanoto.id/course/view.php?id='.$id.'">'. $fullname.'</a></h2>';
     $coursecontext = context_course::instance($id);
     $enrolledstudents = get_enrolled_users($coursecontext, 'moodle/course:isincompletionreports');
 
