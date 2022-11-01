@@ -1,0 +1,122 @@
+{{!
+    This file is part of Moodle - http://moodle.org/
+    Moodle is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+    Moodle is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+    You should have received a copy of the GNU General Public License
+    along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+}}
+{{!
+    @template block_pintar_analytic/templates/userranking.mustache
+
+    This template renders the a card for the course cards.
+    Example context (json):
+    {
+        "courses": [
+            {
+                "name": "Assignment due 1",
+                "viewurl": "https://moodlesite/course/view.php?id=2",
+                "courseimage": "https://moodlesite/pluginfile/123/course/overviewfiles/123.jpg",
+                "fullname": "course 3",
+                "hasprogress": true,
+                "progress": 10,
+                "visible": true
+            }
+        ]
+    }
+}}
+
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css"/>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.2.3/css/buttons.dataTables.min.css"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.html5.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.print.min.js"></script>
+
+<h3>Total activities: {{totalactivities}}</h3>
+<form id="frm_filter" class="mt-2 mb-2" method="GET" action="">
+	<input type="hidden" name="id" id="id" value="{{id}}">
+	<div class="form-row">
+		<div class="col-md-3">
+			<select name="group" id="group" class="form-control">
+				<option value="">Pilih Group</option>
+				<option value="0">Semua Group</option>
+				{{#data_group}}
+					<option value="{{group_id}}">{{group_name}}</option>
+				{{/data_group}}
+			</select>
+		</div>
+		<div class="col-md-3">
+			<button type="submit" class="btn btn-primary">Filter</button>
+		</div>
+	</div>
+</form>
+
+<table id="userTable">
+    <thead>
+    <th>No</th>
+    <th>Nama</th>
+    <th>Group</th>
+    <th>Activity Selesai</th>
+    <th>Prosentase</th>
+    <th>Grade</th>
+    </thead>
+
+    <tbody>
+    {{#result}}
+    <tr>
+    <td>{{no}}</td>
+    <td>{{nama}}</td>
+    <td>{{user_groupid}}</td>
+    <td>{{tactv}}</td>
+    <td>{{prouseractv}} %</td>
+    <td>{{gradetotal}} </td>
+    </tr>
+    {{/result}}
+    </tbody>
+
+	<tfoot>
+		<th>No</th>
+		<th>Nama</th>
+		<th>Group</th>
+		<th>Activity Selesai</th>
+		<th>Prosentase</th>
+		<th>Grade Total</th>
+	</tfoot>
+</table>
+
+<script>
+    $(document).ready(function() {
+    let t = $('#userTable').DataTable({
+	dom: 'Bfrtip',
+	buttons: [
+		'csv',
+	],
+	columnDefs: [
+	  {
+	    searchable: false,
+	  },
+	],
+	order: [[2, 'desc']],
+	// "serverSide":false
+      
+     });
+        t.on('order.dt search.dt', function () {
+        let i = 1;
+ 
+        t.cells(null, 0, { search: 'applied', order: 'applied' }).every(function (cell) {
+            this.data(i++);
+        });
+    	}).draw();
+    });
+</script>
+</body>
+</html>
