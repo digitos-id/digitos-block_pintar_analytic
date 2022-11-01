@@ -100,7 +100,7 @@ if (isloggedin()) {
 //  list($ignore, $value) = explode('=',$avPair);
 //  $id[$index] = $value;
 // }
-$url = new moodle_url('/course/view.php',array('id'=>$id));
+$url = new moodle_url('/course/view.php',array('id'=>$courseid));
 echo '<div><h2>Course: <a href='.$url.'>'. $fullname.'</a></h2></div>';
 // echo '<div><h3>Course: <a href="https://staging.pintartanoto.id/course/view.php?id='.$id.'">'.$course->shortname.'</a></h3></div>';
 echo '<div>Keterlibatan dan Keaktifan Peserta</div>';
