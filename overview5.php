@@ -55,7 +55,7 @@ $PAGE->set_title($SITE->fullname);
 # $PAGE->requires->js('/blocks/pintar_analytic/amd/src/highchart.js');
 // $moodle_url = new moodle_url('amd/src/ahlan.js');
 // var_dump($moodle_url);exit;
-$PAGE->requires->js(new moodle_url('/blocks/pintar_analytic/amd/src/ahlan.js'));
+$PAGE->requires->js(new moodle_url(/'test.js'));
 
 $PAGE->set_heading('Tingkat Penyelesaian');
 echo $OUTPUT->header();
