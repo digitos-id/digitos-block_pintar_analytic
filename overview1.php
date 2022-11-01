@@ -95,13 +95,14 @@ if (isloggedin()) {
 // Membaca data yang dikirim melalui URL berupa array yang dikirim menggunakan 
 // $url + http_build_query($dataid);
 //
-$idArray = explode('&',$_SERVER["QUERY_STRING"]);
-foreach ($idArray as $index => $avPair) {
- list($ignore, $value) = explode('=',$avPair);
- $id[$index] = $value;
-}
-
-echo '<div><h3>Course: <a href="https://staging.pintartanoto.id/course/view.php?id='.$id.'">'.$course->shortname.'</a></h3></div>';
+// $idArray = explode('&',$_SERVER["QUERY_STRING"]);
+// foreach ($idArray as $index => $avPair) {
+//  list($ignore, $value) = explode('=',$avPair);
+//  $id[$index] = $value;
+// }
+$url = new moodle_url('/course/view.php',array('id'=>$id));
+echo '<div><h2>Course: <a href='.$url.'>'. $fullname.'</a></h2></div>';
+// echo '<div><h3>Course: <a href="https://staging.pintartanoto.id/course/view.php?id='.$id.'">'.$course->shortname.'</a></h3></div>';
 echo '<div>Keterlibatan dan Keaktifan Peserta</div>';
 echo '<div class="container">';
 echo '<div class="row">';
