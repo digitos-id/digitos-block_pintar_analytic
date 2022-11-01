@@ -29,9 +29,9 @@ require_once('../../config.php');
 echo $OUTPUT->header();
 
 $PAGE->requires->jquery();
-$PAGE->requires->js(new moodle_url('/test.js'));
+$PAGE->requires->js(new moodle_url('/blocks/pintar_analytic/test.js'));
 echo '
-<script src="/highcharts.js"></script>
+<script src="/blocks/pintar_analytic/highcharts.js"></script>
 
 
 ';//GANTI PATH
@@ -42,7 +42,7 @@ echo '
 
 
 
-<div class="container1" id="container1" style="width:100%; height:400px;">xxgx</div>
+<div class="container1" id="container1" style="width:100%; height:400px;">qwr</div>
 ';
 
 
