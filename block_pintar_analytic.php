@@ -31,6 +31,9 @@ require_once($CFG->libdir.'/pagelib.php');
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+//Trick untuk membatasi popup frequency
+$sm = optional_param('sm', 0, PARAM_INT);
+
  use block_pintar_analytic\pintar_analytic;
  use block_pintar_analytic\defaults;
 
@@ -163,11 +166,15 @@ class block_pintar_analytic extends block_base {
             $this->content->text .= '<ul><li><a href="'.$url.'">Persentase Peserta Selesai</a></li>';
             
             $url = new moodle_url('/blocks/pintar_analytic/overview1.php',array('id'=>$courseid));    
-	    $this->content->text .= '<li><a href="'.$url.'">Persentase Penyelesaian Aktivitas</a></li></ul>';
+	        $this->content->text .= '<li><a href="'.$url.'">Persentase Penyelesaian Aktivitas</a></li></ul>';
 
-	    $this->content->text .= '<b>Peserta</b>';
+	        $this->content->text .= '<b>Peserta</b>';
             $url = new moodle_url('/blocks/pintar_analytic/overview2.php',array('id'=>$courseid));    
-	    $this->content->text .= '<ul><li><a href="'.$url.'">Peringkat Keaktifan Peserta </a></li></ul>';
+	        $this->content->text .= '<ul><li><a href="'.$url.'">Peringkat Keaktifan Peserta </a></li></ul>';
+
+            $this->content->text .= '<b>Analisa Pre/Post</b>';
+            $url = new moodle_url('/blocks/pintar_analytic/overview4a.php',array('id'=>$courseid));
+            $this->content->text .= '<ul><li><a href="'.$url.'">Analisa Butir Soal</a></li></ul>';
 
 	    # $this->content->text .= "Sdr. ".$USER->firstname.",<br>";  
 	     $datacourse = get_course($courseid);
