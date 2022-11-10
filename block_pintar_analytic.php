@@ -430,5 +430,31 @@ class block_pintar_analytic extends block_base {
     return $results;
 
    }    
+
+  /*  function tampilModal() {
+    ?>
+                <script>
+                alert('halo');
+                
+                define(['core/config'], function(mdlcfg) {
+        console.log(mdlcfg.wwwroot); // outputs the wwwroot of moodle to console
+        });
+                 
+        /*
+                require(['jquery', 'core/modal_factory'], function($, ModalFactory) {
+      var trigger = $('#create-modal');
+      ModalFactory.create({
+        title: 'test title',
+        body: '<p>test body content</p>',
+        footer: 'test footer content',
+      }, trigger)
+      .done(function(modal) {
+        // Do what you want with your new modal.
+      });
+    });
+         */
+                </script>
+    <?php
+        } */
     
 }
