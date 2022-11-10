@@ -222,31 +222,38 @@ class block_pintar_analytic extends block_base {
 //
 //----
 
-	    $this->content->text .= '<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>';
-	    $this->content->text .= '<script>';
-	    $this->content->text .= 'let no = 0;';
-	    $this->content->text .= 'function pesan() {';
-	    $this->content->text .= 'if (no = 0) { swal("Sdr. '.$USER->firstname.'\nCourse Anda akan berakhir pada: \n'.date('jS \of F Y', $datacourse->enddate).'") }';
-	    $this->content->text .= 'let no = 1;';
-	    $this->content->text .= '}';
-	    // $this->content->text .= '<script>swal("Sdr. '.$USER->firstname.'\nCourse Anda akan berakhir pada: \n'.date('jS \of F Y', $datacourse->enddate).'");</script>';
-	    $this->content->text .= 'pesan();</script>';
-	    #  var_dump($USER);
-	    #  die();
+ //----
+        // Menampilkan popup jika sm<>1
+        // (pakai sweetalert js
+        //
 
-	    # $url = new moodle_url('/blocks/pintar_analytic/overview3.php',array('id'=>$courseid));    
-	    # $this->content->text .= '<li><a href="'.$url.'">Peringkat Peserta</a></li></ul>';
+        if($sm!=1){
+            $this->content->text .= '<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>';
+            $this->content->text .= '<script>';
+            $this->content->text .= 'let no = 0;';
+            $this->content->text .= 'function pesan() {';
+            $this->content->text .= 'if (no = 0) { swal("Sdr. '.$USER->firstname.'\nCourse Anda akan berakhir pada: \n'.date('jS \of F Y', $datacourse->enddate).'") }';
+            $this->content->text .= 'let no = 1;';
+            $this->content->text .= '}';
+            // $this->content->text .= '<script>swal("Sdr. '.$USER->firstname.'\nCourse Anda akan berakhir pada: \n'.date('jS \of F Y', $datacourse->enddate).'");</script>';
+            $this->content->text .= 'pesan();</script>';
+            $sm = 1;
+            #  var_dump($USER);
+            #  die();
 
-	    # $this->content->text .= '<b>Kategori</b>';
-            # $url = new moodle_url('/blocks/pintar_analytic/overview1a.php',array('id'=>$courseid,'catid'=>$COURSE->category));    
-	    # $this->content->text .= '<li><a href="'.$url.'">Kategori </a></li></ul>';
+            # $url = new moodle_url('/blocks/pintar_analytic/overview3.php',array('id'=>$courseid));    
+            # $this->content->text .= '<li><a href="'.$url.'">Peringkat Peserta</a></li></ul>';
 
+            # $this->content->text .= '<b>Kategori</b>';
+                # $url = new moodle_url('/blocks/pintar_analytic/overview1a.php',array('id'=>$courseid,'catid'=>$COURSE->category));    
+            # $this->content->text .= '<li><a href="'.$url.'">Kategori </a></li></ul>';
+        }
 
         }
 	// Notice: Trying to get property 'wwwroot' of non-object in /var/www/lms.digitos.id/blocks/pintar_analytic/block_pintar_analytic.php on line 135
 	//
         $this->tool_mytool_before_footer;	
-	echo $OUTPUT->notification('<center>Perhatian</center>', 'warning');
+	    echo $OUTPUT->notification('<center>Perhatian</center>', 'warning');
         return $this->content;
     }
     
