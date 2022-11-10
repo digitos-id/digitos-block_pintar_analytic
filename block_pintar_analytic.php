@@ -114,6 +114,18 @@ class block_pintar_analytic extends block_base {
     public function get_content() {
     global $COURSE, $DB, $OUTPUT,$USER;
 
+    // mengambil nilai parameter sm
+        //
+        $url = 'https://'.$_SERVER['HTTP_HOST'];
+        $url .= $_SERVER['REQUEST_URI'];
+        $url_components = parse_url($url);
+        parse_str($url_components['query'],$params);
+        $sm = $params['sm'];
+        # var_dump($url);
+        # die();
+        //
+        //
+
     # var_dump($COURSE);
     # die();
 
@@ -188,7 +200,27 @@ class block_pintar_analytic extends block_base {
 	    # var_dump($usercompletion);
 	    # die();
 
+//----
+        // Proses mengambil info untuk diletakkan di popup
+        //
+        $course_user_stat = $this->custom_get_user_course_completion($courseid,$USER->id);
+        $activities = $course_user_stat['statuses'];
 
+        // Total activities yang ada keseluruhan
+        $totalactivities = count($activities);
+        # var_dump($totalactivities);
+        # die(); 
+
+        // Total activities yang ada untuk setiap user saat ini
+        $usertotalactivities = 0;
+        foreach ($activities as $totalactivity){
+            if($totalactivity["timecompleted"]>0){
+               $usertotalactivities+=1;
+               }
+        }
+        $prosenuseractivities = number_format($usertotalactivities/$totalactivities*100,2);
+//
+//----
 
 	    $this->content->text .= '<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>';
 	    $this->content->text .= '<script>';
